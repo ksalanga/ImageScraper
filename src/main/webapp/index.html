@@ -1,0 +1,84 @@
+<html>
+<head>
+</head>
+<body>
+	<h1>Kenneth Salanga's Eulerity Take-Home, Image Crawler</h1>
+
+	<div>
+		Implemented
+		<ul>
+			<li>
+				Multi page crawling
+			</li>
+			<li>
+				Multithreading
+			</li>
+			<li>
+				URL parser if the user doesn't add the http scheme or www
+			</li>
+			<li>
+				If an image on a web page has a relative path, converts it to a URL so that the image src
+				works on this page
+			</li>
+			<li>
+				Can configure source code to be a polite crawler.
+				(Didn't have enough time to configure that as an HTTP Request payload since the bulk was spent
+				setting up the crawling and multithreading but it's possible.)
+			</li>
+		</ul>
+	</div>
+	<div class="content">
+		<div class="input">
+			<form>
+				<input type="text" name="url">
+			</form>
+			<button type="button">Submit!</button>
+		</div>
+		<div class="output">
+			<ul class="results">
+
+			</ul>
+		</div>
+	</div>
+	<script>
+		var resultList = document.querySelector('ul.results');
+		var urlInput = document.querySelector('input[name=url]')
+
+		apiCallBack = function(xhr, callback) {
+			if (xhr.readyState == XMLHttpRequest.DONE) {
+				if (xhr.status != 200) {
+					let message = xhr.status + ":" + xhr.statusText + ":"
+							+ xhr.responseText;
+					alert(message);
+					throw 'API call returned bad code: ' + xhr.status;
+				}
+				let response = xhr.responseText ? JSON.parse(xhr.responseText)
+						: null;
+				if (callback) {
+					callback(response);
+				}
+			}
+		}
+
+		updateList = function(response) {
+			resultList.innerHTML = '';
+			for (var i = 0; i < response.length; i++) {
+				var img = document.createElement("img");
+				img.width = 200;
+				img.src = response[i];
+				resultList.appendChild(img);
+			}
+		}
+
+		makeApiCall = function(url, method, obj, callback) {
+			let xhr = new XMLHttpRequest();
+			xhr.open(method, url);
+			xhr.onreadystatechange = apiCallBack.bind(null, xhr, callback);
+			xhr.send(obj ? obj instanceof FormData || obj.constructor == String ? obj : JSON.stringify(obj) : null);
+		}
+
+		document.querySelector('button').addEventListener("click", function(event) {
+			event.preventDefault();
+			makeApiCall('/main?url=' + urlInput.value, 'POST', null, updateList);
+		});
+	</script>

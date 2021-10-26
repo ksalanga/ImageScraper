@@ -1,0 +1,9 @@
+Please paste your list of test URLs below:
+https://eulerity.com/
+https://www.google.com/
+https://www.google.com//
+https://www.google.com
+www.google.com/
+google.com
+randomWords
+https://www.rutgers.edu/
