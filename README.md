@@ -1,11 +1,6 @@
 # Kenneth Salanga Eulerity Hackathon Submission #
 
-## Chronological implementation of how I got functionalities to work: ##
-
-* JSoup Scraping for images on a single web page
-	* Implemented the JSoup library to find all image tags given the request's input address.
-
-* Setup:
+## Setup: ##
 	1. When running the program, Crawler4j uses HTTP repositories.
 	2. Maven might block the program from executing/ compiling because it requires packages outside of its central repositories.
 	3. On your computer, go to where Maven's directory is.
@@ -21,6 +16,11 @@
 		</mirror>
 ```
 	6. Comment that out and save the settings file. Everything should work after this step.
+
+## Chronological implementation of how I got functionalities to work: ##
+
+* JSoup Scraping for images on a single web page
+	* Implemented the JSoup library to find all image tags given the request's input address.
 
 * URL parsing
 	* I decided URL parsing was a problem that could have arisen if a client doesn't type the full address.
