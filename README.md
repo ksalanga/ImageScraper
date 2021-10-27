@@ -1,23 +1,22 @@
 # Kenneth Salanga Eulerity Hackathon Submission #
 
 ## Setup: ##
-	1. When running the program, Crawler4j uses HTTP repositories.
-	2. Maven might block the program from executing/ compiling because it requires packages outside of its central repositories.
-	3. On your computer, go to where Maven's directory is.
-	4. Head to the settings.xml file of the computer's maven directory: ${maven.home}/conf/settings.xml or ${user.home}/.m2/settings.xml
-	5. With your favorite text editor, open the settings.xml file and Find:
 
-```
-		<mirror>
-  			<id>maven-default-http-blocker</id>
-  			<mirrorOf>external:http:*</mirrorOf>
-  			<name>Pseudo repository to mirror external repositories initially using HTTP.</name>
-  			<url>http://0.0.0.0/</url>
-  			<blocked>true</blocked>
-		</mirror>
-```
-
-	6. Comment that out and save the settings file. Everything should work after this step.
+1. When running the program, Crawler4j uses HTTP repositories.
+2. Maven might block the program from executing/ compiling because it requires packages outside of its central repositories.
+3. On your computer, go to where Maven's directory is.
+4. Head to the settings.xml file of the computer's maven directory: ${maven.home}/conf/settings.xml or ${user.home}/.m2/settings.xml
+5. With your favorite text editor, open the settings.xml file and Find:
+	```
+	<mirror>
+		<id>maven-default-http-blocker</id>
+		<mirrorOf>external:http:*</mirrorOf>
+		<name>Pseudo repository to mirror external repositories initially using HTTP.</name>
+		<url>http://0.0.0.0/</url>
+		<blocked>true</blocked>
+	</mirror>
+	```
+6. Comment that out and save the settings file. Everything should work after this step.
 
 ## Chronological implementation of how I got functionalities to work: ##
 
