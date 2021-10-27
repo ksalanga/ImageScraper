@@ -5,6 +5,21 @@
 * JSoup Scraping for images on a single web page
 	* Implemented the JSoup library to find all image tags given the request's input address.
 
+* Setup:
+	1. When running the program, Crawler4j uses HTTP repositories.
+	2. Maven might block the program from executing/ compiling because it requires packages outside of its central repositories.
+	3. On your computer, go to where Maven's directory is.
+	4. Head to the settings.xml file of the computer's maven directory: ${maven.home}/conf/settings.xml or ${user.home}/.m2/settings.xml
+	5. With your favorite text editor, open the settings.xml file and Find:
+		<mirror>
+  			<id>maven-default-http-blocker</id>
+  			<mirrorOf>external:http:*</mirrorOf>
+  			<name>Pseudo repository to mirror external repositories initially using HTTP.</name>
+  			<url>http://0.0.0.0/</url>
+  			<blocked>true</blocked>
+		</mirror>
+	6. Comment that out and save the settings file. Everything should work after this step.
+
 * URL parsing
 	* I decided URL parsing was a problem that could have arisen if a client doesn't type the full address.
 		* That's something you have to deal with in software though, data won't always be formatted to the programmer's liking
